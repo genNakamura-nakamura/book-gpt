@@ -1,26 +1,26 @@
 # read_pdf.pyの設定
 # 処理を行う最初のページ（pdfviewerで確認した値）-①
-first_page: int = 15
+first_page: int = 23
 
 # 処理を行う最初のページに記載されているページ数（pdfの画像内にある値）-②
-first_page_in_book: int = 1
+first_page_in_book: int = 15
 
 # 処理を行う最後のページ（pdfviewerで確認した値）-③
-last_page: int = 317
+last_page: int = 298
 
 # pdfのパス
-pdf_path: str = "book.pdf"
+pdf_path: str = "deelbook.pdf"
 
 # search_split_point_candidate.pyの設定
 # 検索する文字サイズの最小値 -④
-min_font_size: int = 16
+min_font_size: int = 10
 # 検索する文字サイズの最大値 -⑤
-max_font_size: int = 28
+max_font_size: int = 100
 
 
 # create_prompt.pyの設定
 # プロンプトに一度に入力するぺージ数 -⑥
-page_count: int = 5
+page_count: int = 12
 # 入力する命令 -⑦
 order: str = '''# 入力
 {text}
@@ -34,8 +34,7 @@ order: str = '''# 入力
 ・「だ・である調」で要約する。
 ・体言止めをしない。
 ・全てのページについて、1ページにつき1つ以上は要素を書き出す。
-・要約の要素数は多すぎるくらいにする。
-・要約の数は30個以上出力する。
+・なるべく固有名詞を拾うようにする。
 
 # 出力例
  - マスコミはこれらの本をまともなものとして扱っていた (p.25)
