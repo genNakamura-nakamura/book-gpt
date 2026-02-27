@@ -85,7 +85,7 @@ if __name__ == "__main__":
         df_sub = df.loc[s:e, ["title", "char"]]
 
         df_text = df_sub.groupby(["page_no"])[
-            "char"].apply(lambda x: "\n".join(x))
+            "char"].apply(lambda x: "\n".join(x.dropna().astype(str)))
 
         # page数を合わせる
         page_ajust = settings.first_page - settings.first_page_in_book
