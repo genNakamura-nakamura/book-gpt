@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 bedrock_client = boto3.client(service_name='bedrock-runtime', region_name='us-east-1')
-model_id = "us.anthropic.claude-haiku-4-5-20251001-v1:0"
+model_id = "global.anthropic.claude-sonnet-4-5-20250929-v1:0"
 
 
 
