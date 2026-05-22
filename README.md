@@ -42,7 +42,30 @@ python summary_all.py
 ```bash
 python join_summary.py
 ```
-17. `tmp/summary.docx`が生成されるので、確認し、異常があれば修正する
+17. `tmp/summary.md`が生成されるので、確認し、異常があれば修正する
+
+## 要約のリファイン（任意）
+プログラムで生成した素の要約を、手作業で行っていた仕上げ（脱線項目の削除、関連項目の統合、人物の肩書き補足、原文に照らした誤字・誤訳修正、Markdownフォーマット整形）にLLMで近づける後処理。
+
+`tmp/summary.md`（マージ済み）をベースに、章単位で原文と現在の要約をLLMに渡し直し、`tmp/summary_refined.md`を出力する。
+
+18. `refine_summary.py`を実行する
+```bash
+python refine_summary.py
+```
+- 特定の章だけリファインしたい場合:
+  ```bash
+  python refine_summary.py --only "第1章"
+  ```
+- 出力ファイル名を変えたい場合:
+  ```bash
+  python refine_summary.py --out tmp/summary_refined_test.md
+  ```
+19. `tmp/summary_refined.md`が生成されるので、内容を確認する
+20. 出力の傾向を変えたい場合は`settings.py`の`refine_order`（リファイン用プロンプト）や`refine_max_tokens`を編集して再実行する
+    - 項目を多く残したい→ルール1の「6～8割を残す」を「8～9割を残す」に
+    - 圧縮を強めたい→「4～6割に圧縮」に
+    - 章が長くて出力が途切れる→`refine_max_tokens`を増やす
 
 
 ## ディレクトリとファイル
@@ -54,8 +77,9 @@ python join_summary.py
 - 中間処理ステップで使用されるデータファイルが一時的に保存されています:
 
 `df.pickle`: pdfのpandasデータフレームを一時保存するためのファイル  
-`index.csv`, `split_point.csv`, `split_point_candidate.csv`: 要約処理のための分割ポイント情報
-summary.docx: すべての要約を含む最終的なドキュメント
+`index.csv`, `split_point.csv`, `split_point_candidate.csv`: 要約処理のための分割ポイント情報  
+`summary.md`: `join_summary.py`によって生成される、すべての章の要約をまとめた最終ドキュメント  
+`summary_refined.md`: `refine_summary.py`によって生成される、LLMで仕上げを行った完成形に近いドキュメント
 
 ### Python スクリプト
 - check.py: 特定のページの中身を確認するスクリプト。
@@ -66,6 +90,7 @@ summary.docx: すべての要約を含む最終的なドキュメント
 - settings.py: プロジェクトの設定を定義するファイル。
 - summary_all.py: すべての入力テキストを一度に要約するスクリプト。
 - summary_at_once.py: 指定したプロンプトのみを要約するスクリプト。
+- refine_summary.py: 生成された要約を章単位でLLMに再投入し、手仕上げに近い形へリファインするスクリプト。`tmp/summary_refined.md`を出力する。
 
 ### 設定ファイル
 - pyproject.toml: Pythonパッケージ管理のためのツールの設定ファイル。
