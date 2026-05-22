@@ -1,5 +1,6 @@
 *.pdf
 key.py
+.env
 
 tmp/*
 summary/*
@@ -7,3 +8,4 @@ prompt/*
 __pycache__/*
 
 poetry.lock
+.venv/

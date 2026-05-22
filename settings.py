@@ -1,15 +1,15 @@
 # read_pdf.pyの設定
 # 処理を行う最初のページ（pdfviewerで確認した値）-①
-first_page: int = 23
+first_page: int = 17
 
 # 処理を行う最初のページに記載されているページ数（pdfの画像内にある値）-②
-first_page_in_book: int = 15
+first_page_in_book: int = 9
 
 # 処理を行う最後のページ（pdfviewerで確認した値）-③
-last_page: int = 298
+last_page: int = 504
 
 # pdfのパス
-pdf_path: str = "deelbook.pdf"
+pdf_path: str = "book.pdf"
 
 # search_split_point_candidate.pyの設定
 # 検索する文字サイズの最小値 -④
@@ -58,4 +58,4 @@ sleep_time: int = 1
 worker_count: int = 2
 
 # summary_at_once.pyの設定 -⑩
-file_name: str = "0003.txt"
+file_name: str = "0000.txt"

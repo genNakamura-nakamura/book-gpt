@@ -4,10 +4,12 @@ import os
 import concurrent.futures
 import boto3
 import json
+from dotenv import load_dotenv
 
+load_dotenv()
 
 bedrock_client = boto3.client(service_name='bedrock-runtime', region_name='us-east-1')
-model_id = "anthropic.claude-3-5-sonnet-20240620-v1:0"
+model_id = "us.anthropic.claude-haiku-4-5-20251001-v1:0"
 
 
 
@@ -38,7 +40,7 @@ def one_thread(file_name: str):
 
 # ファイル名に基づいて読み込みを行う関数
 def read_file(file_name: str) -> str:
-    with open("prompt/" + file_name, "r") as f:
+    with open("prompt/" + file_name, "r", encoding="utf-8") as f:
         prompt = f.read()
     return prompt
 
@@ -56,7 +58,6 @@ def generate_summary(prompt: str) -> str:
     # 推論設定
     inference_config = {
         "temperature": settings.temperature,
-        "topP": settings.top_p,
         "maxTokens": settings.max_tokens,
         "stopSequences": []
     }
@@ -76,7 +77,7 @@ def generate_summary(prompt: str) -> str:
 
 # ファイル名に基づいて書き込みを行う関数
 def write_file(file_name: str, summary: str):
-    with open("summary/" + file_name, "w") as f:
+    with open("summary/" + file_name, "w", encoding="utf-8") as f:
         f.write(summary)
 
 

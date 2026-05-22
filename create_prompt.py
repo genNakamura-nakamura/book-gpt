@@ -109,7 +109,7 @@ if __name__ == "__main__":
 
             # promptを保存する 4桁で0埋めする
             file_name = f"prompt/{file_count:04}.txt"
-            with open(file_name, "w") as f:
+            with open(file_name, "w", encoding="utf-8") as f:
                 f.write(text)
 
             file_index.append([file_name, title])
