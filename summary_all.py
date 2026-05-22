@@ -3,7 +3,9 @@ import settings
 import os
 import concurrent.futures
 import boto3
+from dotenv import load_dotenv
 
+load_dotenv()
 
 bedrock_client = boto3.client(service_name="bedrock-runtime", region_name="us-east-1")
 model_id = "us.anthropic.claude-3-5-sonnet-20241022-v2:0"

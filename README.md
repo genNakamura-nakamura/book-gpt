@@ -1,4 +1,15 @@
 # 作業手順
+
+## 初回セットアップ
+1. 依存パッケージをインストール
+   ```bash
+   poetry install
+   ```
+2. `.env.example` をコピーして `.env` を作成し、AWS の認証情報を記入
+   ```bash
+   cp .env.example .env
+   ```
+
 ## 要約実行
 1. pdfをローカルで開く
 2. 本の目次、構成を確認する
@@ -22,13 +33,7 @@ python search_split_point_candidate.py
 python create_prompt.py
 ```
 13. `prompt/XXXX.txt`が生成されるので、確認し、異常があれば修正する
-14. AWSのアクセスキー、シークレットキーを設定する
-```bash
-aws configure sso
-
-export AWS_ACCESS_KEY_ID="Axxxxxxxxxxxxxxxxxxxxxxx"
-export AWS_SECRET_ACCESS_KEY="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-```
+14. `.env` に AWS のアクセスキー、シークレットキーが設定されていることを確認する（初回セットアップで設定済み）
 14. `summary_all.py`を実行する
 ```bash
 python summary_all.py

@@ -1,7 +1,0 @@
-pandas
-pymupdf
-python-docx
-matplotlib
-scipy
-pyarrow
-boto3
