@@ -1,15 +1,22 @@
+import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 # read_pdf.pyの設定
 # 処理を行う最初のページ（pdfviewerで確認した値）-①
-first_page: int = 15
+first_page: int = int(os.getenv("FIRST_PAGE", "15"))
 
 # 処理を行う最初のページに記載されているページ数（pdfの画像内にある値）-②
-first_page_in_book: int = 1
+first_page_in_book: int = int(os.getenv("FIRST_PAGE_IN_BOOK", "1"))
 
 # 処理を行う最後のページ（pdfviewerで確認した値）-③
-last_page: int = 317
+last_page: int = int(os.getenv("LAST_PAGE", "317"))
 
 # pdfのパス
-pdf_path: str = "book.pdf"
+pdf_path: str = os.getenv("PDF_PATH", "book.pdf")
 
 # search_split_point_candidate.pyの設定
 # 検索する文字サイズの最小値 -④
@@ -59,4 +66,4 @@ sleep_time: int = 1
 worker_count: int = 2
 
 # summary_at_once.pyの設定 -⑩
-file_name: str = "0003.txt"
+file_name: str = os.getenv("FILE_NAME", "0003.txt")
